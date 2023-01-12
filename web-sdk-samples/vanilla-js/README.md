@@ -1,0 +1,1 @@
+This repo contains samples for building vanilla js applications with Branch web-sdk intregrated.
