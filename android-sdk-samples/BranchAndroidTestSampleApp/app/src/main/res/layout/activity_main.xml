@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
+
+
+        <TextView
+            android:id="@+id/titleTextID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/raleway_bold"
+            android:gravity="center"
+            android:text="Branch Android Sample App"
+            android:textColor="@color/branch_text_blue"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/purchaseStandardEventButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:width="320dp"
+            android:backgroundTint="@color/branch_background_blue"
+            android:fontFamily="@font/raleway"
+            android:text="Buy Now"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/changeBranchBadgeButton" />
+
+        <Button
+            android:id="@+id/commerceEventButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:width="320dp"
+            android:backgroundTint="@color/branch_background_blue"
+            android:text="Add to Cart"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/purchaseStandardEventButton" />
+
+        <TextView
+            android:id="@+id/generatedLink"
+            android:layout_width="270dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:width="270dp"
+            android:background="@drawable/my_border"
+            android:ellipsize="end"
+            android:fontFamily="@font/raleway_medium"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text=""
+            android:textColor="@color/branch_text_blue"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/shareLinkButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextID" />
+
+        <Button
+            android:id="@+id/readDeepLinkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:width="320dp"
+            android:backgroundTint="@color/branch_background_blue"
+            android:text="Read Link Data"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/colorBlockPageButton" />
+
+
+        <ImageButton
+            android:id="@+id/shareLinkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/my_border"
+            app:layout_constraintBottom_toBottomOf="@+id/qrCodeIconImage"
+            app:layout_constraintEnd_toStartOf="@+id/qrCodeIconImage"
+            app:layout_constraintTop_toTopOf="@+id/qrCodeIconImage"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@android:drawable/ic_menu_share" />
+
+        <ImageButton
+            android:id="@+id/qrCodeIconImage"
+            android:layout_width="44dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/my_border"
+            app:layout_constraintBottom_toBottomOf="@+id/generatedLink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/generatedLink"
+            app:srcCompat="@drawable/qrcopy" />
+
+        <ImageView
+            android:id="@+id/branchBadgeDark"
+            android:layout_width="207dp"
+            android:layout_height="227dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/qrCodeIconImage"
+            app:srcCompat="@drawable/branchcopybadgelarger" />
+
+        <Button
+            android:id="@+id/changeBranchBadgeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:width="320dp"
+            android:text="Change Branch Badge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/branchBadgeDark" />
+
+        <Button
+            android:id="@+id/colorBlockPageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:width="320dp"
+            android:text="Color Block Page"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/commerceEventButton" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

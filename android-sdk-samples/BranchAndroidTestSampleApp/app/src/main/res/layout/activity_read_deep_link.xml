@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ReadDeepLinkActivity">
+
+        <TextView
+            android:id="@+id/sessionParamsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/session_param_text"
+            android:textColor="@color/branch_text_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/installParameterDescription" />
+
+
+        <TextView
+            android:id="@+id/sessionParamsText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sessionParamsTitle"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/my_border"
+            android:text=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sessionParamsTitle" />
+
+        <TextView
+            android:id="@+id/installParamTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sessionParamsText"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/install_param_text"
+            android:textColor="@color/branch_text_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sessionParamsText" />
+
+        <TextView
+            android:id="@+id/installParamsText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/installParamTitle"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/my_border"
+            android:text=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/installParamTitle" />
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:width="320dp"
+            android:text="Back to Home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/installParamsText" />
+
+        <TextView
+            android:id="@+id/readDeepLinkTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/raleway_bold"
+            android:gravity="center"
+            android:text="Read Deep Link Data"
+            android:textColor="@color/branch_text_blue"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sessionParameterDescription"
+            android:layout_width="344dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/raleway"
+            android:text="@string/session_parameter_description"
+            android:textColor="@color/branch_text_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/readDeepLinkTitle" />
+
+        <TextView
+            android:id="@+id/installParameterDescription"
+            android:layout_width="344dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/raleway"
+            android:text="@string/install_parameter_description"
+            android:textColor="@color/branch_text_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sessionParameterDescription" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

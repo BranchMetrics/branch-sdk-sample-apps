@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+
+    <!-- View background color -->
+    <solid
+        android:color="@color/white">
+    </solid>
+
+    <!-- View border color and width -->
+    <stroke
+        android:width="5dp"
+        android:color="@color/branch_background_blue">
+    </stroke>
+
+    <!-- The radius makes the corners rounded -->
+    <corners
+        android:radius="2dp" >
+    </corners>
+
+    <!-- Spacing around text in view -->
+    <padding
+        android:left="4dp"
+        android:right="4dp"
+        android:bottom="4dp"
+        android:top="4dp">
+    </padding>
+
+</shape>
