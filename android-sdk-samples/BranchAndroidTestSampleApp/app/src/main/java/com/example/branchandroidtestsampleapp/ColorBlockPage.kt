@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -30,21 +31,32 @@ class ColorBlockPage : AppCompatActivity() {
             val blockColor = sessionParams["blockColor"]
             val stringColor = getString(R.string.blockColorString, blockColor)
 
-            if (sessionParams["blockColor"] == "Yellow") {
+            if (sessionParams["blockColor"] == "Yellow" || sessionParams["blockColor"] == "yellow") {
                 colorBlockImageView.setBackgroundColor(Color.YELLOW)
                 yourColorBlockString.text = stringColor
-
-            } else if (sessionParams["blockColor"] == "Blue") {
+            }
+            else if (sessionParams["blockColor"] == "Blue" || sessionParams["blockColor"] == "blue") {
                 colorBlockImageView.setBackgroundColor(Color.BLUE)
                 yourColorBlockString.text = stringColor
-
-            } else if (sessionParams["blockColor"] == "Red") {
+            }
+            else if (sessionParams["blockColor"] == "Red" || sessionParams["blockColor"] == "red") {
                 colorBlockImageView.setBackgroundColor(Color.RED)
                 yourColorBlockString.text = stringColor
-            } else {
-                return
             }
-
+            else if (sessionParams["blockColor"] == "White" || sessionParams["blockColor"] == "white") {
+                colorBlockImageView.setBackgroundColor(Color.WHITE)
+                yourColorBlockString.text = stringColor
+            }
+            else if (sessionParams["blockColor"] == "Green" || sessionParams["blockColor"] == "green") {
+                colorBlockImageView.setBackgroundColor(Color.GREEN)
+                yourColorBlockString.text = stringColor
+            }
+            else {
+                yourColorBlockString.text = "Your color block is: White"
+                Log.e("Unexpected blockColor", "ERROR: Unexpected 'blockColor' parameter detected... " +
+                        "\nColor block defaults to 'White'... " +
+                        "\nPlease use 'Blue', 'Yellow', 'Red', 'Green' or 'White' for your 'blockColor' parameter.")
+            }
         } else {
             yourColorBlockString.text = "Your color block is: White"
         }
@@ -54,6 +66,7 @@ class ColorBlockPage : AppCompatActivity() {
         val homeButton = findViewById<Button>(R.id.homeButton)
         homeButton.setOnClickListener {
             val homeIntent = Intent(this, MainActivity::class.java)
+            homeIntent.putExtra("branch_force_new_session", true)
             startActivity(homeIntent)
         }
 

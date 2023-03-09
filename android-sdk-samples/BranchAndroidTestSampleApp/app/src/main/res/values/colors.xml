@@ -11,4 +11,6 @@
     <color name="branch_light_blue">#4DD4FF</color>
     <color name="branch_background_blue">#050E3C</color>
     <color name="branch_text_blue">#1F2852</color>
+    <color name="branch_button_blue">#4DD4FF</color>
+    <color name="branch_title_blue">#050E3C</color>
 </resources>

@@ -7,8 +7,8 @@
     <string name="qr_code_api_title"><b><u>QR Code API</u></b></string>
 
     <!-- Read Data Activity Lables -->
-    <string name="install_param_text"><b>Install Parameters:</b></string>
-    <string name="session_param_text"><b>Session Parameters:</b></string>
+    <string name="install_param_text"><b>INSTALL PARAMETERS</b></string>
+    <string name="session_param_text"><b>SESSION PARAMETERS</b></string>
     <string name="session_parameter_description"><i>Session Parameters are determined each time the app is initialized.</i></string>
     <string name="install_parameter_description"><i>Install Parameters are determined when the app is first installed.</i></string>
 
