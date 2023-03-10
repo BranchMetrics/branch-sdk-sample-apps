@@ -1,2 +1,47 @@
 
 .DS_Store
+
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Eclipse
+*.class
+Branch-SDK-TestBed/.settings/org.eclipse.jdt.core.prefs
+Branch-SDK/.settings/org.eclipse.jdt.core.prefs
+
+# Android Studio
+.idea
+*.iml
+local.properties
+build/
+
+# Gradle
+.gradle/*
+.metadata/*
+
+*.gen
+bin/
+gen/
+
+# Mac stuff
+*.DS_Store
+
+# Branch
+Branch-SDK-TestBed/gradle/wrapper/gradle-wrapper.jar
+Branch-SDK-TestBed/gradlew
+Branch-SDK-TestBed/gradlew.bat
+
+Branch-SDK-TestBed/gradle/wrapper/gradle-wrapper.properties
