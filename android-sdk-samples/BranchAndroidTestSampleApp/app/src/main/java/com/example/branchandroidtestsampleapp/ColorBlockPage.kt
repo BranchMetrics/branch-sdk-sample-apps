@@ -13,6 +13,9 @@ import io.branch.referral.Branch
 import io.branch.referral.util.BranchEvent
 
 class ColorBlockPage : AppCompatActivity() {
+
+    val TAG = ColorBlockPage::class.simpleName
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_color_block_page)
@@ -29,31 +32,25 @@ class ColorBlockPage : AppCompatActivity() {
 
         if (sessionParams.has("blockColor")) {
             val blockColor = sessionParams["blockColor"]
-            val stringColor = getString(R.string.blockColorString, blockColor)
+            yourColorBlockString.text = getString(R.string.blockColorString, blockColor)
 
             if (sessionParams["blockColor"] == "Yellow" || sessionParams["blockColor"] == "yellow") {
                 colorBlockImageView.setBackgroundColor(Color.YELLOW)
-                yourColorBlockString.text = stringColor
             }
             else if (sessionParams["blockColor"] == "Blue" || sessionParams["blockColor"] == "blue") {
                 colorBlockImageView.setBackgroundColor(Color.BLUE)
-                yourColorBlockString.text = stringColor
             }
             else if (sessionParams["blockColor"] == "Red" || sessionParams["blockColor"] == "red") {
                 colorBlockImageView.setBackgroundColor(Color.RED)
-                yourColorBlockString.text = stringColor
             }
             else if (sessionParams["blockColor"] == "White" || sessionParams["blockColor"] == "white") {
                 colorBlockImageView.setBackgroundColor(Color.WHITE)
-                yourColorBlockString.text = stringColor
             }
             else if (sessionParams["blockColor"] == "Green" || sessionParams["blockColor"] == "green") {
                 colorBlockImageView.setBackgroundColor(Color.GREEN)
-                yourColorBlockString.text = stringColor
             }
             else {
-                yourColorBlockString.text = "Your color block is: White"
-                Log.e("Unexpected blockColor", "ERROR: Unexpected 'blockColor' parameter detected... " +
+                Log.e(TAG, "ERROR: Unexpected 'blockColor' parameter detected... " +
                         "\nColor block defaults to 'White'... " +
                         "\nPlease use 'Blue', 'Yellow', 'Red', 'Green' or 'White' for your 'blockColor' parameter.")
             }

@@ -23,5 +23,16 @@
     <string name="shortReadDataLabel">Read Data Short Shortcut</string>
     <string name="longReadDataLabel">Read Data Long Shortcut</string>
     <string name="readDataDisabledMessage">Read Data Disabled</string>
+    <string name="color_block_page_button">Color Block Page</string>
+    <string name="change_branch_badge_button">Change Branch Badge</string>
+    <string name="read_link_data_button">Read Link Data</string>
+    <string name="add_to_cart_button">Add To Cart</string>
+    <string name="buy_now_button">Buy Now</string>
+    <string name="branch_android_sample_app_title">Branch Sample App</string>
+    <string name="back_to_home_button">Back to Home</string>
+    <string name="color_block_routing_example_title">Color Block Routing Example</string>
+    <string name="color_block_text">Color block:</string>
+    <string name="back_to_home_button_2">Back to Home</string>
+    <string name="read_deep_link_data_title">Read Deep Link Data</string>
 
 </resources>

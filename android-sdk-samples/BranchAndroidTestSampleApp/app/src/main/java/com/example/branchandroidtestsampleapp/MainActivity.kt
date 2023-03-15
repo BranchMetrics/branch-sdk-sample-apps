@@ -24,6 +24,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    val TAG = MainActivity::class.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,18 +38,18 @@ class MainActivity : AppCompatActivity() {
 
         Branch.sessionBuilder(this).withCallback { branchUniversalObject, linkProperties, error ->
             if (error != null) {
-                Log.e("BranchSDK_Tester", "branch init failed. Caused by -" + error.message)
+                Log.e(TAG, "branch init failed. Caused by -" + error.message)
             } else {
-                Log.i("BranchSDK_Tester", "branch init complete!")
+                Log.i(TAG, "branch init complete!")
                 if (branchUniversalObject != null) {
-                    Log.i("BranchSDK_Tester", "title " + branchUniversalObject.title)
-                    Log.i("BranchSDK_Tester", "CanonicalIdentifier " + branchUniversalObject.canonicalIdentifier)
-                    Log.i("BranchSDK_Tester", "metadata " + branchUniversalObject.contentMetadata.convertToJson())
+                    Log.i(TAG, "title " + branchUniversalObject.title)
+                    Log.i(TAG, "CanonicalIdentifier " + branchUniversalObject.canonicalIdentifier)
+                    Log.i(TAG, "metadata " + branchUniversalObject.contentMetadata.convertToJson())
                 }
                 if (linkProperties != null) {
-                    Log.i("BranchSDK_Tester", "Channel " + linkProperties.channel)
-                    Log.i("BranchSDK_Tester", "control params " + linkProperties.controlParams)
-                    Log.i("Branch Stuff",
+                    Log.i(TAG, "Channel " + linkProperties.channel)
+                    Log.i(TAG, "control params " + linkProperties.controlParams)
+                    Log.i(TAG,
                         linkProperties.controlParams["\$og_title"].toString()
                     )
                     // ---------- Intra App Linking Using Custom $deeplink_path ----------
@@ -126,15 +127,13 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         setIntent(intent)
-        if (intent != null) {
-            intent.putExtra("branch_force_new_session", true)
-        }
+        intent?.putExtra("branch_force_new_session", true)
         Branch.sessionBuilder(this).withCallback { referringParams, error ->
             if (error != null) {
-                Log.e("BranchSDK_Tester", error.message)
+                Log.e(TAG, error.message)
             } else if (referringParams != null) {
-                Log.i("BranchSDK_Tester", referringParams.toString())
-                Log.i("SDK Logs", "--- SDK LOGS ABOVE ---")
+                Log.i(TAG, referringParams.toString())
+                Log.i(TAG, "--- SDK LOGS ABOVE ---")
                 if (referringParams.has("\$deeplink_path")) {
                     if (referringParams["\$deeplink_path"] == "color block page") {
                         val routingPageIntent = Intent(this, ColorBlockPage::class.java)
@@ -159,13 +158,13 @@ class MainActivity : AppCompatActivity() {
             .setCampaign("Sample Test App Campaign Example")
             .setChannel("Sample Test App Marketing")
             .setFeature("sharing")
-            .addControlParameter("\$desktop_url", "http://example.com/home")
+            .addControlParameter("\$desktop_url", "https://example.com/home")
             .addControlParameter("\$deeplink_path", "color block page")
             .addControlParameter("blockColor", "Yellow")
 
         buo.generateShortUrl(this, lp, Branch.BranchLinkCreateListener { url, error ->
             if (error == null) {
-                Log.i("BRANCH SDK", "Branch Link to share: " + url)
+                Log.i(TAG, "Branch Link to share: $url")
                 branchLinkTest.updateLayoutParams {
                     width = WRAP_CONTENT
                     height = WRAP_CONTENT
@@ -183,11 +182,11 @@ class MainActivity : AppCompatActivity() {
             .setFeature("sharing")
             .setCampaign("content 123 launch")
             .setStage("new user")
-            .addControlParameter("\$desktop_url", "http://example.com/home")
+            .addControlParameter("\$desktop_url", "https://example.com/home")
             .addControlParameter("\$deeplink_path", "color block page")
             .addControlParameter("custom", "data")
             .addControlParameter("blockColor", "Green")
-            .addControlParameter("custom_random", Calendar.getInstance().getTimeInMillis().toString())
+            .addControlParameter("custom_random", Calendar.getInstance().timeInMillis.toString())
 
         val ss = ShareSheetStyle(this@MainActivity, "Check this out!", "This stuff is awesome: ")
             .setCopyUrlStyle(resources.getDrawable(androidx.appcompat.R.drawable.abc_ic_menu_copy_mtrl_am_alpha), "Copy", "Added to clipboard")
@@ -230,7 +229,6 @@ class MainActivity : AppCompatActivity() {
             .setWidth(512)
             .setImageFormat(BranchQRCode.BranchImageFormat.JPEG)
             .setCenterLogo("https://i.snipboard.io/5PW62T.jpg")
-        // .setCenterLogo("https://cdn.branch.io/branch-assets/1598575682753-og_image.png")
 
         val qrCodeLinkProperties = LinkProperties()
             .setChannel("QR Code Creator Channel")
@@ -256,26 +254,26 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             override fun onFailure(e: Exception) {
-                Log.d("Failed to get QR code", e.toString())
+                Log.e(TAG, e.toString())
             }
         })
     }
 
     private fun createCustomEvent() {
-        BranchEvent(BRANCH_STANDARD_EVENT.INITIATE_PURCHASE).logEvent(this)
-        Toast.makeText(this, "'INITIATE_PURCHASE' Commerce Event sent!", Toast.LENGTH_SHORT).show()
-        Log.i("Purchase Event","'INITIATE_PURCHASE' Commerce Event sent!")
+            BranchEvent("MY_CUSTOM_PURCHASE").logEvent(this)
+        Toast.makeText(this, "'MY_CUSTOM_PURCHASE' Custom Event sent!", Toast.LENGTH_SHORT).show()
+        Log.i(TAG,"'MY_CUSTOM_PURCHASE' Custom Event sent!")
     }
 
     private fun createCommerceEvent() {
         BranchEvent(BRANCH_STANDARD_EVENT.ADD_TO_CART).logEvent(this)
         Toast.makeText(this, "'ADD_TO_CARD' Commerce Event sent!", Toast.LENGTH_SHORT).show()
-        Log.i("Add To cart Event","'ADD_TO_CART' Commerce Event sent!")
+        Log.i(TAG,"'ADD_TO_CART' Commerce Event sent!")
     }
 
     private fun changeBannerEvent() {
-        BranchEvent("Change Badge").logEvent(this)
+        BranchEvent("CHANGE_BADGE").logEvent(this)
         Toast.makeText(this, "'Change Badge' Custom Event sent!", Toast.LENGTH_SHORT).show()
-        Log.i("Change Badge","'Change Badge' Custom Event sent!")
+        Log.i(TAG,"'Change Badge' Custom Event sent!")
     }
 }
