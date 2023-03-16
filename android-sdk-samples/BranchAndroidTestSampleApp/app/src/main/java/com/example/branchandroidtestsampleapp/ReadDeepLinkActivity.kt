@@ -22,42 +22,29 @@ class ReadDeepLinkActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        // ---------- Branch Session Listener ----------
+        // ---------- Get Latest Session Params ----------
+        val sessionParams = Branch.getInstance().latestReferringParams
+        val sessionParamsTextConcat = sessionParams.toString()
+        val readableSessionParams = sessionParamsTextConcat.replace(",", ",\n")
+        val sessionParamViewModifier = findViewById<TextView>(R.id.sessionParamsText)
 
-        Branch.sessionBuilder(this).withCallback { referringParams, error ->
-            if (error == null) {
-                Log.i(TAG, referringParams.toString())
+        // ---------- Get Parameters Sent on App Install ----------
+        val installParams = Branch.getInstance().firstReferringParams
+        val installParamsTextConcat = installParams.toString()
+        val readableInstallParams = installParamsTextConcat.replace(",", ",\n")
+        val installParamViewModifier = findViewById<TextView>(R.id.installParamsText)
 
-                // ---------- Get Latest Session Params ----------
-                val sessionParams = Branch.getInstance().latestReferringParams
-                val sessionParamsTextConcat = sessionParams.toString()
-                val readableSessionParams = sessionParamsTextConcat.replace(",", ",\n")
-                val sessionParamViewModifier = findViewById<TextView>(R.id.sessionParamsText)
-
-                // ---------- Get Parameters Sent on App Install ----------
-                val installParams = Branch.getInstance().firstReferringParams
-                val installParamsTextConcat = installParams.toString()
-                val readableInstallParams = installParamsTextConcat.replace(",", ",\n")
-                val installParamViewModifier = findViewById<TextView>(R.id.installParamsText)
-
-                // ---------- Show Session and Install Parameters ----------
-                sessionParamViewModifier.text = readableSessionParams
-                Log.i(TAG, sessionParamsTextConcat)
-                installParamViewModifier.text = readableInstallParams
-                Log.i(TAG, installParamsTextConcat)
-
-            } else {
-                Log.e(TAG, error.message)
-            }
-        }.withData(this.intent.data).init()
-
+        // ---------- Show Session and Install Parameters ----------
+        sessionParamViewModifier.text = readableSessionParams
+        Log.i(TAG, sessionParamsTextConcat)
+        installParamViewModifier.text = readableInstallParams
+        Log.i(TAG, installParamsTextConcat)
 
         // Home button to return to MainActivity
 
         val homeButton = findViewById<Button>(R.id.homeButton)
         homeButton.setOnClickListener {
             val homeIntent = Intent(this, MainActivity::class.java)
-            homeIntent.putExtra("branch_force_new_session", true)
             startActivity(homeIntent)
         }
     }

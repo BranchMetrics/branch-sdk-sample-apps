@@ -63,7 +63,6 @@ class ColorBlockPage : AppCompatActivity() {
         val homeButton = findViewById<Button>(R.id.homeButton)
         homeButton.setOnClickListener {
             val homeIntent = Intent(this, MainActivity::class.java)
-            homeIntent.putExtra("branch_force_new_session", true)
             startActivity(homeIntent)
         }
 

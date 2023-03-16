@@ -11,7 +11,9 @@ import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.WindowManager
 import android.widget.*
+import androidx.annotation.RequiresPermission
 import androidx.core.view.updateLayoutParams
+import androidx.lifecycle.ViewModelProvider
 import io.branch.referral.Branch
 import io.branch.indexing.BranchUniversalObject
 import io.branch.referral.BranchError
@@ -55,8 +57,12 @@ class MainActivity : AppCompatActivity() {
                     // ---------- Intra App Linking Using Custom $deeplink_path ----------
                     // ---------- Intra-app linking (i.e. session reinitialization) requires an intent flag, "branch_force_new_session". ----------
                     if (linkProperties.controlParams["\$deeplink_path"].toString() == "color block page") {
-
                         val intent = Intent(this, ColorBlockPage::class.java)
+                        intent.putExtra("branch_force_new_session", true)
+                        startActivity(intent)
+                    }
+                    else if (linkProperties.controlParams["\$deeplink_path"].toString() == "read deep link page") {
+                        val intent = Intent(this, ReadDeepLinkActivity::class.java)
                         intent.putExtra("branch_force_new_session", true)
                         startActivity(intent)
                     }
@@ -99,18 +105,21 @@ class MainActivity : AppCompatActivity() {
             createCommerceEvent()
         }
 
+        val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+
         val branchBadge = findViewById<ImageView>(R.id.branchBadgeDark)
-        var iconMeter = 0
-        val changeBannerEventButton = findViewById<Button>(R.id.changeBranchBadgeButton)
-        changeBannerEventButton.setOnClickListener {
-            if (iconMeter == 0) {
+        val changeBadgeEventButton = findViewById<Button>(R.id.changeBranchBadgeButton)
+        changeBadgeEventButton.setOnClickListener {
+
+            viewModel.meterChanger()
+            val badgeMeter = viewModel.badgeMeter
+
+            if (badgeMeter == 1) {
                 branchBadge.setImageResource(R.drawable.branchbadgelightlarger)
-                iconMeter++
             } else {
                 branchBadge.setImageResource(R.drawable.branchcopybadgelarger)
-                iconMeter--
             }
-            changeBannerEvent()
+            changeBadgeEvent()
         }
 
 
@@ -118,7 +127,6 @@ class MainActivity : AppCompatActivity() {
         val colorBlockButton = findViewById<Button>(R.id.colorBlockPageButton)
         colorBlockButton.setOnClickListener {
             val colorBlockIntent = Intent(this, ColorBlockPage::class.java)
-            colorBlockIntent.putExtra("branch_force_new_session", true)
             startActivity(colorBlockIntent)
         }
     }
@@ -127,7 +135,6 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         setIntent(intent)
-        intent?.putExtra("branch_force_new_session", true)
         Branch.sessionBuilder(this).withCallback { referringParams, error ->
             if (error != null) {
                 Log.e(TAG, error.message)
@@ -137,6 +144,11 @@ class MainActivity : AppCompatActivity() {
                 if (referringParams.has("\$deeplink_path")) {
                     if (referringParams["\$deeplink_path"] == "color block page") {
                         val routingPageIntent = Intent(this, ColorBlockPage::class.java)
+                        routingPageIntent.putExtra("branch_force_new_session", true)
+                        startActivity(routingPageIntent)
+                    }
+                    else if (referringParams["\$deeplink_path"] == "read deep link page") {
+                        val routingPageIntent = Intent(this, ReadDeepLinkActivity::class.java)
                         routingPageIntent.putExtra("branch_force_new_session", true)
                         startActivity(routingPageIntent)
                     }
@@ -182,10 +194,17 @@ class MainActivity : AppCompatActivity() {
             .setFeature("sharing")
             .setCampaign("content 123 launch")
             .setStage("new user")
-            .addControlParameter("\$desktop_url", "https://example.com/home")
+
+            // $deeplink_path routes users to a specific Activity. Uncomment one of the below to route to the specified page.
             .addControlParameter("\$deeplink_path", "color block page")
-            .addControlParameter("custom", "data")
+            //.addControlParameter("\$deeplink_path", "read deep link page")
+
+
+            // You can set the 'blockColor' parameter to 'Blue', 'Yellow', 'Red', 'Green' or 'White' to modify the color block page.
             .addControlParameter("blockColor", "Green")
+
+            .addControlParameter("\$desktop_url", "https://example.com/home")
+            .addControlParameter("custom", "data")
             .addControlParameter("custom_random", Calendar.getInstance().timeInMillis.toString())
 
         val ss = ShareSheetStyle(this@MainActivity, "Check this out!", "This stuff is awesome: ")
@@ -271,7 +290,7 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG,"'ADD_TO_CART' Commerce Event sent!")
     }
 
-    private fun changeBannerEvent() {
+    private fun changeBadgeEvent() {
         BranchEvent("CHANGE_BADGE").logEvent(this)
         Toast.makeText(this, "'Change Badge' Custom Event sent!", Toast.LENGTH_SHORT).show()
         Log.i(TAG,"'Change Badge' Custom Event sent!")

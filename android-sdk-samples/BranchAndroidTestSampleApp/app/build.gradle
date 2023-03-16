@@ -42,7 +42,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // required for all Android apps
-    implementation 'io.branch.sdk.android:library:5.+'
+    implementation 'io.branch.sdk.android:library:5.3.0'
     // required if your app is in the Google Play Store (tip: avoid using bundled play services libs)
     implementation 'com.google.android.gms:play-services-ads-identifier:17.1.0+'
     // alternatively, use the following lib for getting the AAID
