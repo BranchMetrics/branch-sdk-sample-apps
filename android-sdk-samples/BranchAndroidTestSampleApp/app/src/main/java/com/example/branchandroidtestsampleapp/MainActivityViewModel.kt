@@ -1,17 +1,12 @@
 package com.example.branchandroidtestsampleapp
 
 import android.widget.ImageView
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel : ViewModel() {
 
-    var badgeMeter = 0
-
-    fun meterChanger() {
-        if (badgeMeter == 1) {
-            badgeMeter--
-        } else {
-            badgeMeter++
-        }
+    val currentBadge: MutableLiveData<Int> by lazy {
+        MutableLiveData<Int>(R.drawable.branchbadgelightlarger)
     }
 }

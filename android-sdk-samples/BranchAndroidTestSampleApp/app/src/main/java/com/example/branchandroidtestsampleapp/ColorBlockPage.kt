@@ -54,7 +54,9 @@ class ColorBlockPage : AppCompatActivity() {
                         "\nColor block defaults to 'White'... " +
                         "\nPlease use 'Blue', 'Yellow', 'Red', 'Green' or 'White' for your 'blockColor' parameter.")
             }
-        } else {
+        }
+
+        else {
             yourColorBlockString.text = "Your color block is: White"
         }
 

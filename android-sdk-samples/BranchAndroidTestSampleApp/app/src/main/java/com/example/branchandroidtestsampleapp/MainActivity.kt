@@ -104,24 +104,29 @@ class MainActivity : AppCompatActivity() {
         commerceEventButton.setOnClickListener {
             createCommerceEvent()
         }
-
         val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-
         val branchBadge = findViewById<ImageView>(R.id.branchBadgeDark)
-        val changeBadgeEventButton = findViewById<Button>(R.id.changeBranchBadgeButton)
-        changeBadgeEventButton.setOnClickListener {
 
-            viewModel.meterChanger()
-            val badgeMeter = viewModel.badgeMeter
-
-            if (badgeMeter == 1) {
+        viewModel.currentBadge.observe(this, androidx.lifecycle.Observer {
+            if (it == R.drawable.branchcopybadgelarger) {
                 branchBadge.setImageResource(R.drawable.branchbadgelightlarger)
             } else {
                 branchBadge.setImageResource(R.drawable.branchcopybadgelarger)
             }
+        })
+
+        val changeBadgeEventButton = findViewById<Button>(R.id.changeBranchBadgeButton)
+        changeBadgeEventButton.setOnClickListener {
+            // Just toggle a boolean
+            Log.i(TAG, "ChangeBadge onClick called " + viewModel.currentBadge.value)
+
+            if (viewModel.currentBadge.value == R.drawable.branchcopybadgelarger) {
+                viewModel.currentBadge.postValue(R.drawable.branchbadgelightlarger)
+            } else {
+                viewModel.currentBadge.postValue(R.drawable.branchcopybadgelarger)
+            }
             changeBadgeEvent()
         }
-
 
         // ---------- Open Color Block Page Manually ----------
         val colorBlockButton = findViewById<Button>(R.id.colorBlockPageButton)
