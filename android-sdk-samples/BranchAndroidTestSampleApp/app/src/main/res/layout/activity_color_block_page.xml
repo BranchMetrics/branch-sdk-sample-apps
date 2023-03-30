@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ColorBlockPage">
+
+    <TextView
+        android:id="@+id/colorBlockText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:fontFamily="@font/raleway"
+        android:text="@string/color_block_text"
+        android:textColor="#4C5478"
+        android:letterSpacing="0.01"
+        app:layout_constraintBottom_toBottomOf="@+id/colorBlock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/colorBlock"
+        app:layout_constraintVertical_bias="0.511" />
+
+    <ImageView
+        android:id="@+id/colorBlock"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="68dp"
+        android:background="@drawable/my_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/routingPageDescription" />
+
+    <TextView
+        android:id="@+id/yourBlockColorString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:fontFamily="@font/raleway"
+        android:text="@string/blockColorString"
+        android:textColor="#4C5478"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colorBlockText" />
+
+
+    <TextView
+        android:id="@+id/routingPageDescription"
+        android:layout_width="304dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/raleway"
+        android:text="@string/routingPageDescription"
+        android:textColor="#4C5478"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/routingExampleTitle" />
+
+    <TextView
+        android:id="@+id/routingExampleTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/raleway_medium"
+        android:letterSpacing="0.01"
+        android:text="@string/color_block_routing_example_title"
+        android:textColor="@color/branch_title_blue"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:width="320dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/raleway_bold"
+        android:letterSpacing="0.01"
+        android:text="@string/back_to_home_button"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourBlockColorString" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
