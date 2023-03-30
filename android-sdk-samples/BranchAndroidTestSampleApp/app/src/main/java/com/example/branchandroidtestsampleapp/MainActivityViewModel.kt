@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel : ViewModel() {
 
-    val currentBadge: MutableLiveData<Int> by lazy {
-        MutableLiveData<Int>(R.drawable.branchbadgelightlarger)
+    val displayLightBadge: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>(false)
     }
 }

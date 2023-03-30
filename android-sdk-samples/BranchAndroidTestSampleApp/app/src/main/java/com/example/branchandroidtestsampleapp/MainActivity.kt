@@ -104,11 +104,14 @@ class MainActivity : AppCompatActivity() {
         commerceEventButton.setOnClickListener {
             createCommerceEvent()
         }
+
+        // ---------- ViewModel Modifications ----------
+
         val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         val branchBadge = findViewById<ImageView>(R.id.branchBadgeDark)
 
-        viewModel.currentBadge.observe(this, androidx.lifecycle.Observer {
-            if (it == R.drawable.branchcopybadgelarger) {
+        viewModel.displayLightBadge.observe(this, androidx.lifecycle.Observer {
+            if (it) {
                 branchBadge.setImageResource(R.drawable.branchbadgelightlarger)
             } else {
                 branchBadge.setImageResource(R.drawable.branchcopybadgelarger)
@@ -118,13 +121,9 @@ class MainActivity : AppCompatActivity() {
         val changeBadgeEventButton = findViewById<Button>(R.id.changeBranchBadgeButton)
         changeBadgeEventButton.setOnClickListener {
             // Just toggle a boolean
-            Log.i(TAG, "ChangeBadge onClick called " + viewModel.currentBadge.value)
+            Log.i(TAG, "ChangeBadge onClick called " + viewModel.displayLightBadge.value)
+            viewModel.displayLightBadge.postValue(!viewModel.displayLightBadge.value!!)
 
-            if (viewModel.currentBadge.value == R.drawable.branchcopybadgelarger) {
-                viewModel.currentBadge.postValue(R.drawable.branchbadgelightlarger)
-            } else {
-                viewModel.currentBadge.postValue(R.drawable.branchcopybadgelarger)
-            }
             changeBadgeEvent()
         }
 
