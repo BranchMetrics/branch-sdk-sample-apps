@@ -9,6 +9,8 @@
 [submodule "android-sdk-samples"]
 	path = android-sdk-samples
 	url = https://github.com/BranchMetrics/branch-android-sdk-samples.git
+	branch = main
 [submodule "react-native-samples"]
 	path = react-native-samples
 	url = https://github.com/BranchMetrics/branch-react-native-sdk-samples.git
+	branch = main
