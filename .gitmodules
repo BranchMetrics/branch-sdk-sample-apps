@@ -1,6 +1,8 @@
 [submodule "ios-sdk-samples"]
 	path = ios-sdk-samples
 	url = https://github.com/BranchMetrics/branch-ios-sdk-samples.git
+	branch = main
 [submodule "web-sdk-samples"]
 	path = web-sdk-samples
 	url = https://github.com/BranchMetrics/branch-web-sdk-samples.git
+	branch = main
