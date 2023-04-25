@@ -6,3 +6,6 @@
 	path = web-sdk-samples
 	url = https://github.com/BranchMetrics/branch-web-sdk-samples.git
 	branch = main
+[submodule "android-sdk-samples"]
+	path = android-sdk-samples
+	url = https://github.com/BranchMetrics/branch-android-sdk-samples.git
