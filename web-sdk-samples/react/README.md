@@ -1,1 +1,0 @@
-This repo contains samples for building react js applications with Branch web-sdk intregrated.
